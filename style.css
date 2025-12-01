@@ -1,0 +1,1095 @@
+@font-face {
+  font-family: 'FuturaNowHeadline';
+  src: url('estilos/fuentes/FuturaNowHeadline.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Palette verde: sustituye los azules por tonos verdes */
+:root{
+  --green-900: #4a5f8f;
+  --green-700: #b8744f;
+  --green-600: #6db04f; /* usado en btn-confirmar */
+  --green-500: #e8d758;
+  --green-300: #f39c42;
+  --green-100: #eef9ef;
+  --accent: #1cba3e;
+  --muted: #6b8a73;
+}
+
+/* Reemplazos globales de color (sobrescriben tonos azules existentes) */
+header {
+  background-color: var(--green-100); /* antes: #e8f0ff */
+  border-bottom: 2px solid rgba(0,0,0,0.08);
+  text-align: center;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1002;
+}
+
+/* Contenedor de logos */
+.header-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1rem;
+  margin: 0 auto;
+  max-width: 1000px;
+  background: #fff;
+}
+
+/* Estilo individual de cada logo */
+.logo {
+  height: 40px; /* reducido de 60px a 40px */
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.2s;
+}
+
+/* Hover suave en los logos */
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* Ajustes responsive */
+@media (max-width: 768px) {
+  .header-top {
+    gap: 1rem;
+  }
+  .logo {
+    height: 35px; /* reducido de 50px a 35px */
+  }
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+h1#title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 1rem 0 0.5rem 0;
+  letter-spacing: 1px;
+}
+
+/* Barra de navegación horizontal */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  padding: 0 1rem;
+  position: relative;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: var(--green-600); /* antes: #004080 */
+  font-weight: bold;
+}
+
+.menu li a:hover {
+  text-decoration: underline;
+}
+
+/* Menú hamburguesa a la izquierda */
+#hamburger {
+  display: block;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--green-600);
+  position: relative;
+  z-index: 101;
+  margin-right: 1rem;
+}
+
+/* Menú principal oculto en móvil */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  
+  
+  nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+
+  #hamburger {
+    display: block;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--green-600);
+    position: relative;
+    z-index: 101;
+    margin-right: 1rem;
+  }
+
+  .menu {
+    position: absolute;
+    top: 100%; /* justo debajo del nav */
+    left: 0;
+    width: 220px;
+    background: #e8f0ff;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 0;
+    border-top: none;
+    transition: transform 0.4s cubic-bezier(.77,0,.18,1), opacity 0.3s;
+    transform: translateX(-100%);
+    opacity: 0;
+    display: flex;
+    z-index: 100;
+  }
+
+  .menu.show {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  /* Oculta el menú en escritorio */
+  @media (min-width: 769px) {
+    #hamburger {
+      display: none;
+    }
+    .menu {
+      position: static;
+      height: auto;
+      width: auto;
+      box-shadow: none;
+      transform: none;
+      flex-direction: row;
+      align-items: center;
+      padding-top: 0;
+      opacity: 1;
+      display: flex;
+    }
+  }
+}
+
+/* Menú hamburguesa y horizontal */
+.main-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  gap: 0;
+  height: 60px; /* Ajusta según el alto real de tu nav */
+}
+
+.main-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 45%; /* alinea verticalmente con la hamburguesa */
+  left: -290px;
+  width: 260px;
+  height: auto;
+  max-height: calc(100vh - 120px);
+  background: #6db04f;
+  box-shadow: 2px 0 16px rgba(0,0,0,0.08);
+  border-radius: 0 12px 12px 0;
+  z-index: 999;
+  align-items: flex-start;
+  padding-top: 0.5rem;
+  transition: left 0.35s cubic-bezier(.77,0,.175,1);
+  overflow: auto;
+  transform: translateY(-45%); /* centra verticalmente respecto al contenedor */
+}
+
+.menu-toggle-checkbox:checked ~ ul {
+  left: 0;
+  transform: translateY(-38%); /* mantener centrado al mostrarse */
+}
+
+/* para pantallas más pequeñas también forzamos la misma altura */
+@media (max-width: 900px) {
+  .main-nav ul {
+    top: 450%;
+    transform: translateY(-45%);
+  }
+}
+
+.main-nav ul li {
+  width: 100%;
+  border-bottom: 1px solid #eaeaea;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.25s, transform 0.25s;
+}
+
+.menu-toggle-checkbox:checked ~ ul li {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.08s;
+}
+
+.main-nav ul li:last-child {
+  border-bottom: none;
+}
+
+.main-nav ul li a {
+  display: block;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  background: none;
+  border-radius: 0;
+  text-align: left;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* Efecto hover y activo */
+.main-nav ul li a:hover,
+.main-nav ul li a:active,
+.main-nav ul li a.selected {
+  background: rgba(0,115,35,0.08); /* sutil verde */
+  color: var(--green-600);
+  border-radius: 0;
+}
+
+/* Icono hamburguesa alineado a la izquierda y animación X */
+.hamburger {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 0.5rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1001;
+  background: none;
+  border: none;
+  padding: 0;
+  overflow: visible;
+}
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 24px;
+  background: #000000;
+  margin: 3px 0;
+  border-radius: 2px;
+  transition: transform 0.35s cubic-bezier(.77,0,.175,1), opacity 0.25s;
+  position: relative;
+}
+.menu-toggle-checkbox:checked + .hamburger span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg) scale(0.85);
+}
+.menu-toggle-checkbox:checked + .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle-checkbox:checked + .hamburger span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg) scale(0.85);
+}
+.menu-toggle-checkbox {
+  display: none;
+}
+
+/* Selector de idioma con banderas alineado a la derecha */
+#lang-flags {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lang-flag {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s, box-shadow 0.2s, border 0.2s;
+}
+
+.lang-flag.selected,
+.lang-flag:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  border: 2px solid var(--green-600); /* antes azul */
+}
+
+/* Oculta el selector antiguo */
+#lang-selector {
+  display: none;
+}
+
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Justifica el texto y centra títulos y bloques */
+#content, #content * {
+  text-align: justify;
+}
+
+#content h1,
+#content h2,
+#content h3,
+#content h4,
+#content h5,
+#content h6 {
+  text-align: center;
+}
+
+#content section,
+#content > div {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #555;
+  border-top: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+/* 🌍 Overlay inicial */
+#lang-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #6db04f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* --- Reglas para la sección Organiza tu viaje --- */
+.centered-logo {
+  display: block;
+  margin: 0.75rem auto;
+  max-width: 260px;
+  width: 100%;
+  height: auto;
+}
+
+.cta-button {
+  background: var(--green-700);
+  color: #fff !important;
+  padding: 0.55rem 0.9rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-block;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.cta-link {
+  color: var(--green-700);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.hotel-card {
+  padding: 0.7rem;
+  background: #fbfbfb;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.04);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+@media (max-width: 680px) {
+  .cta-button { padding: 0.5rem 0.7rem; font-size: 0.92rem; }
+  main { padding: 0.8rem; }
+}
+
+.lang-popup {
+  background: #fff;
+  border-radius: 18px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 4px 32px rgba(0, 71, 9, 0.85);
+  text-align: center;
+  max-width: 350px;
+}
+
+.lang-popup h2 {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  color: #222;
+}
+
+.flags {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.flags img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.2s, transform 0.2s;
+  object-fit: cover;
+}
+
+.flags img:hover {
+  border: 2px solid #004080;
+  transform: scale(1.08);
+}
+
+/* 🔁 Animación de entrada */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 📱 Estilos para móvil */
+@media (max-width: 768px) {
+  .menu {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .logo {
+    height: 40px;
+  }
+
+  .lang-popup {
+    width: 85%;
+    padding: 1.5rem;
+  }
+
+  .flags img {
+    width: 60px;
+  }
+
+  main {
+    margin: 1rem;
+    padding: 0.8rem;
+  }
+}
+
+/* Responsive: menú horizontal en escritorio */
+@media (min-width: 769px) {
+  .main-nav ul {
+    position: static;
+    left: 0 !important;
+    top: auto;
+    height: auto;
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    width: auto;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0.7rem 0;
+    transition: none;
+    overflow: visible;
+  }
+  .main-nav ul li {
+    border: none;
+    width: auto;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .main-nav ul li a {
+    text-align: center;
+    padding: 1rem 0.7rem;
+    border-radius: 8px;
+  }
+  .menu-toggle-checkbox,
+  .hamburger {
+    display: none;
+  }
+}
+
+/* Ajusta la posición del menú hamburguesa en móvil */
+@media (max-width: 900px) {
+  .main-nav ul {
+    top: 170px; /* Igual al alto del nav/hamburguesa */
+  }
+}
+
+/* Slider responsive y sin flechas */
+.agenda-slider-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.agenda-slider {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* Relación 16:9 */
+}
+
+.slider-img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.7s;
+  pointer-events: none;
+}
+
+.slider-img.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.vermadrid-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin: 2rem auto;
+      max-width: 900px;
+      padding: 0 1rem;
+    }
+    .vermadrid-item {
+      display: flex;
+      flex-wrap: wrap;
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      overflow: visible; /* importante: no recortar contenido */
+      align-items: stretch;
+      transition: box-shadow 0.2s;
+    }
+    .vermadrid-item:hover {
+      box-shadow: 0 4px 18px rgba(0,0,0,0.13);
+    }
+    .vermadrid-time {
+      background: linear-gradient(135deg, var(--green-600) 70%, #ffffff 100%); /* antes azul oscuro */
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 1.1rem;
+      min-width: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.2rem 1rem;
+      letter-spacing: 1px;
+      border-right: 4px solid #fff;
+    }
+    .vermadrid-num {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.1rem;
+      text-shadow: 1px 1px 2px rgb(255, 255, 255), 0 0 1px #fff;
+    }
+    .vermadrid-desc {
+      flex: 1 1 auto;
+      min-width: 0; /* evita que los hijos obliguen al bloque a crecer y provoquen overflow */
+      padding: 1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      justify-content: flex-start; /* corregido */
+      background: #ffffff;
+    }
+    .vermadrid-desc p {
+      margin: 0 0 0 0;
+      font-size: 0.9rem;
+      color: #222;
+    }
+    .artista-img {
+      width: 100%;
+      max-width: 340px;
+      height: auto;
+      border-radius: 10px;
+      margin: 0.5rem 0;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+      align-self: flex-start;
+      display: block;
+    }
+    .btn-como-llegar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--green-600); /* antes: #19315e */
+      color: #ffffff;
+      padding: 0.35rem 0.9rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      letter-spacing: 1px;
+      text-align: center;
+      min-width: 110px;
+      max-width: 140px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn-como-llegar:hover {
+      background: var(--green-50, var(--green-100)); /* antes: #e8f0ff */
+      color: #000000;
+      transform: scale(1.05);
+    }
+    @media (max-width: 700px) {
+      .vermadrid-item {
+        flex-direction: column;
+      }
+      .vermadrid-time {
+        border-right: none;
+        border-bottom: 4px solid #fff;
+        min-width: unset;
+        width: 100%;
+        padding: 1rem 0.5rem;
+      }
+      .vermadrid-desc {
+        padding: 1rem 0.7rem;
+      }
+      .artista-img {
+        max-width: 100%;
+      }
+    }
+    .faqs-container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .faq-item {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 1rem;
+    }
+    .faq-question {
+      font-weight: bold;
+      color: #19315e;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .faq-question:hover {
+      color: #19315e;
+    }
+    .faq-answer {
+      font-size: 1.05rem;
+      color: #222;
+      line-height: 1.6;
+      margin-left: 0.5rem;
+    }
+     .btn-confirmar {
+      display: block;
+      margin: 2rem auto 1.5rem;
+      background: var(--green-600);
+      color: #fff;
+      padding: 0.8rem 1.6rem;      /* más alto y ancho para apariencia más suave */
+      border-radius: 999px;       /* forma totalmente redondeada (pill) */
+      font-size: 1rem;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(36,160,67,0.15);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      letter-spacing: 1px;
+      min-width: 140px;
+      max-width: 240px;
+      border: none;
+    }
+
+    .btn-confirmar:hover {
+      transform: translateY(-3px) scale(1.02);
+      background: var(--accent);
+      box-shadow: 0 12px 36px rgba(36,160,67,0.20);
+    }
+
+    .btn-confirmar:focus {
+      outline: 3px solid rgba(28,186,62,0.18);
+      outline-offset: 2px;
+    }
+
+    #cookie-banner {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(18,18,20,0.96);
+      color: #fff;
+      z-index: 99999;
+      display: flex;
+      justify-content: center;
+      padding: 1rem;
+      box-shadow: 0 -8px 24px rgba(0,0,0,0.3);
+    }
+    #cookie-banner .container {
+      width: 100%;
+      max-width: 1100px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    #cookie-banner p {
+      margin: 0;
+      flex: 1 1 480px;
+      font-size: 0.98rem;
+      line-height: 1.3;
+      color: #f1f1f1;
+    }
+    .cookie-actions {
+      display: flex;
+      gap: .6rem;
+      flex: 0 0 auto;
+      align-items: center;
+    }
+    .cookie-btn {
+      padding: .45rem .9rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: .95rem;
+      min-width: 120px;
+      text-align: center;
+    }
+    .cookie-accept { background: #24a043; color: #fff; }
+    .cookie-reject { background: #c92a2a; color: #fff; }
+    .cookie-view   { background: #0d6efd; color: #fff; }
+    .cookie-btn:focus { outline: 3px solid rgba(255,255,255,0.12); }
+
+    @media (max-width:640px){
+      #cookie-banner p { flex-basis: 100%; font-size: .95rem; }
+      .cookie-actions { width: 100%; justify-content: space-between; }
+      .cookie-btn { min-width: 30%; font-size: .9rem; }
+    }
+
+    #cookie-banner.hidden {
+      display: none !important;
+    }
+    .legal-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0.8rem auto;
+  padding: 0 1rem;
+  max-width: 800px;
+}
+
+.btn-legal {
+  display: inline-block;
+  background: var(--green-700); /* antes: #19315e */
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: background 0.2s, transform 0.2s;
+  letter-spacing: 0.5px;
+  min-width: 100px;
+  max-width: 120px;
+}
+
+.btn-legal:hover {
+  background: var(--accent); /* antes: azul hover */
+  color: #fff;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .legal-buttons {
+    gap: 0.5rem;
+  }
+  
+  .btn-legal {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+.calendar-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  margin: 1rem auto;
+}
+
+.calendar-day {
+  text-decoration: none;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--green-900); /* antes azul */
+  border-radius: 50%;
+  color: var(--green-900);
+  transition: all 0.2s ease;
+  padding: 0.15rem;
+}
+
+.calendar-day div:nth-child(1) { /* Día semana */
+  font-size: 0.6rem;
+  margin-bottom: -2px;
+}
+
+.calendar-day div:nth-child(2) { /* Número */
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: -2px;
+}
+
+.calendar-day div:nth-child(3) { /* Mes */
+  font-size: 0.6rem;
+}
+
+.calendar-day:hover {
+  background: var(--green-700);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .calendar-day {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .calendar-day div:nth-child(1) { font-size: 0.55rem; }
+  .calendar-day div:nth-child(2) { font-size: 0.85rem; }
+  .calendar-day div:nth-child(3) { font-size: 0.55rem; }
+}
+.agenda-day {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+
+.day-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px dashed #e0e0e0;
+}
+
+.date-tag {
+  background: var(--green-700); /* antes oscuro azul */
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.schedule-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  border-radius: 8px;
+  background: #f8f9fc;
+  border-left: 3px solid #19315e;
+  position: relative;
+}
+
+.time-tag {
+  background: #4a5f8f;
+  color: #e8d758;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  height: fit-content;
+}
+
+.event-content {
+  flex: 1;
+}
+
+.event-content h3 {
+  color: #19315e;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.event-content p {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.location {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.check-mark {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #19315e;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .schedule-item {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .time-tag {
+    align-self: flex-start;
+  }
+  
+  .check-mark {
+    top: 1rem;
+    transform: none;
+  }
+}
+
+/* Usar Montserrat en todo el sitio */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:700,600,500,400,300&display=swap');
+
+html, body, input, textarea, select, button, a, p, li, h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif !important;
+}
+
+/* Opcional: normalizar pesos y mejorar legibilidad */
+body {
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mantener estilos específicos de encabezados si ya existen */
+h1, h2, h3 { font-weight: 700; }
+
+/* Reset box-sizing para evitar que elementos flex desborden */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Evitar que la justificación forzada provoque recortes:
+   solo justificar el
+   hereden o se alineen por defecto (esto evita que imágenes o
+   bloques flex se comporten de forma inesperada). */
+#content {
+  text-align: justify;
+}
+#content * {
+  text-align: inherit;
+}
+
+/* Ajustes para los items vermadrid: permitir que el contenido se encoja
+   correctamente en flexbox y evitar recorte de imagen/texto. */
+.vermadrid-item {
+  display: flex;
+  flex-wrap: wrap;
+  background: #f7faff;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  overflow: visible; /* importante: no recortar contenido */
+  align-items: stretch;
+  transition: box-shadow 0.2s;
+}
+
+/* Contenedor de texto: permitir shrink en flex (min-width:0) */
+.vermadrid-desc {
+  flex: 1 1 auto;
+  min-width: 0; /* evita que los hijos obliguen al bloque a crecer y provoquen overflow */
+  padding: 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  justify-content: flex-start; /* corregido */
+}
+
+/* Asegurar que las imágenes sean completamente responsivas */
+.artista-img {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  border-radius: 10px;
+  margin: 0.5rem 0;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+  align-self: flex-start;
+  display: block;
+}
+
+/* si usas un contenedor de imagen a la derecha, permitir que no se recorte */
+.vermadrid-time,
+.vermadrid-desc,
+.artista-img {
+  box-sizing: border-box;
+}
